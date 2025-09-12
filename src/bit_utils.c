@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 18:13:09 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/09/11 22:12:22 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/09/11 22:14:52 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,29 +41,15 @@ char	*itoba(int n, char *set, int base)
 	return (bin);
 }
 
-int	powerof(int n, int power)
-{
-	int	res;
-
-	res = n;
-	if (power == 0)
-		return (1);
-	while (power-- > 1)
-		res *= n;
-	return (res);
-}
-
 int	btoi(char *b)
 {
 	int	num;
-	int	pow;
-	int	len;
+	int i;
 
 	num = 0;
-	pow = 0;
-	len = strlen(b);
-	while (len--)
-		num += powerof(2, pow++) * (b[len] - 48);
+	i = 0;
+	while (i < (int) strlen(b))
+		num = num * 2 + (b[i++] - 48);
 	return (num);
 }
 
