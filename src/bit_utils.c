@@ -6,10 +6,11 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 18:13:09 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/09/11 22:14:52 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/09/12 21:01:10 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+//#include "../include/minitalk.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -53,10 +54,36 @@ int	btoi(char *b)
 	return (num);
 }
 
+char	*fill_bits(char *bin, int bits)
+{
+	char	*filled;
+	int		rest;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	rest = bits - strlen(bin);
+	if (rest)
+	{
+		filled = calloc(bits + 1, sizeof(char));
+		while (i < rest)
+			filled[i++] = '0';
+		while (i < bits)
+			filled[i++] = bin[j++];
+		free(bin);
+	}
+	else
+		filled = bin;
+	return (filled);
+}
+
 int main(void)
 {
-	char *bs = itoba('Z', "01", 2);
+
+	char *bs = itoba('B', "01", 2);
+	bs = fill_bits(bs, 8);
 	
 	printf("ue %s\n", bs);
-	printf("btoi %d", btoi(bs));
+	printf("btoi %c", btoi(bs));
 }

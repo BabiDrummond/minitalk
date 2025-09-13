@@ -6,16 +6,19 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 19:45:41 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/09/11 17:58:24 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/09/12 21:03:45 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minitalk.h"
 
-void sig_handler(int sig, siginfo_t *info, void *context)
+void	sig_handler(int sig, siginfo_t *info, void *context)
 {
-	ft_printf("Receiving signal %d from PID: %d", sig, info->si_pid);
-	(void) context;
+	char *bin = ft_calloc(8 + 1, sizeof(char));
+	// ft_printf("Receiving signal %d from PID: %d", sig, info->si_pid);
+	// (void) context;
+	if (sig == SIGUSR1)
+		
 	_exit(0);
 }
 
@@ -27,6 +30,7 @@ int	main(void)
 	sigemptyset(&sa.sa_mask);
 
 	sigaction(SIGUSR1, &sa, NULL);
+	sigaction(SIGUSR2, &sa, NULL);
 	ft_printf("%d\n", getpid());
 	while (1)
 	{
