@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 19:45:41 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/09/12 21:03:45 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/09/13 17:49:52 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,32 @@
 
 void	sig_handler(int sig, siginfo_t *info, void *context)
 {
-	char *bin = ft_calloc(8 + 1, sizeof(char));
-	// ft_printf("Receiving signal %d from PID: %d", sig, info->si_pid);
-	// (void) context;
+	//ft_printf("Receiving signal %d from PID: %d\n", sig, info->si_pid);
+	(void) info;
+	(void) context;
+	static char *bin = NULL;
+	static int	i = 0;
+
+	if (bin == NULL)
+		bin = ft_calloc(9, sizeof(char));
 	if (sig == SIGUSR1)
-		
-	_exit(0);
+		bin[i++] = '0';
+	if (sig == SIGUSR2)
+		bin[i++] = '1';
+	if (i == 8 && ft_printf("%c", btoi(bin)))
+		i = 0;
 }
 
 int	main(void)
 {
 	struct sigaction sa;
-	sa.sa_flags = SA_SIGINFO;
 	sa.sa_sigaction = sig_handler;
+	sa.sa_flags = 0;
 	sigemptyset(&sa.sa_mask);
-
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
-	ft_printf("%d\n", getpid());
+	
+	ft_printf("SERVER PID: %d\n", getpid());
 	while (1)
-	{
-		ft_printf("Aguardando...\n");
-		sleep(1);
-	}
+		pause();
 }

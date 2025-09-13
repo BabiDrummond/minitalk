@@ -6,7 +6,7 @@ LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
 SRC_DIR = src/
-SRC = teste.c
+SRC = bit_utils.c
 OBJ_DIR = objs/
 OBJ = $(SRC:%.c=$(OBJ_DIR)%.o)
 
