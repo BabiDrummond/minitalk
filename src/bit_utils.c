@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 18:13:09 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/09/13 17:40:46 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/09/13 19:42:39 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ int	count_digits(int n, int base)
 	return (len);
 }
 
-char	*itoba(int n, char *set, int base)
+unsigned char	*itoba(int n, char *set, int base)
 {
-	char	*bin;
-	int		digits;
-	
+	unsigned char	*bin;
+	int				digits;
+
 	digits = count_digits(n, base);
 	bin = ft_calloc(digits + 1, sizeof(char));
 	while (--digits >= 0)
@@ -41,26 +41,26 @@ char	*itoba(int n, char *set, int base)
 
 int	btoi(char *b)
 {
-	int	num;
-	int i;
+	int		num;
+	size_t	i;
 
 	num = 0;
 	i = 0;
-	while (i < (int) ft_strlen(b))
+	while (i < ft_strlen((char *) b))
 		num = num * 2 + (b[i++] - 48);
 	return (num);
 }
 
-char	*fill_bits(char *bin, int bits)
+unsigned char	*fill_bits(unsigned char *bin, int bits)
 {
-	char	*filled;
-	int		rest;
-	int		i;
-	int		j;
+	unsigned char	*filled;
+	int				rest;
+	int				i;
+	int				j;
 
 	i = 0;
 	j = 0;
-	rest = bits - ft_strlen(bin);
+	rest = bits - ft_strlen((char *)bin);
 	if (rest)
 	{
 		filled = ft_calloc(bits + 1, sizeof(char));
