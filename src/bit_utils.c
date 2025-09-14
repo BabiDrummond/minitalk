@@ -6,13 +6,13 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 18:13:09 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/09/13 19:42:39 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/09/13 21:54:06 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minitalk.h"
 
-int	count_digits(int n, int base)
+int	count_digits(int n)
 {
 	int	len;
 
@@ -20,21 +20,23 @@ int	count_digits(int n, int base)
 	if (n == 0)
 		len++;
 	while (n && ++len)
-		n = n / base;
+		n = n / BASE;
 	return (len);
 }
 
-unsigned char	*itoba(int n, char *set, int base)
+unsigned char	*itoba(int n)
 {
 	unsigned char	*bin;
+	char			*set;
 	int				digits;
 
-	digits = count_digits(n, base);
+	set = ft_strdup("01");
+	digits = count_digits(n);
 	bin = ft_calloc(digits + 1, sizeof(char));
 	while (--digits >= 0)
 	{
-		bin[digits] = set[n % base];
-		n /= base;
+		bin[digits] = set[n % BASE];
+		n /= BASE;
 	}
 	return (bin);
 }
@@ -47,11 +49,11 @@ int	btoi(char *b)
 	num = 0;
 	i = 0;
 	while (i < ft_strlen((char *) b))
-		num = num * 2 + (b[i++] - 48);
+		num = num * BASE + (b[i++] - 48);
 	return (num);
 }
 
-unsigned char	*fill_bits(unsigned char *bin, int bits)
+unsigned char	*fill_bits(unsigned char *bin)
 {
 	unsigned char	*filled;
 	int				rest;
@@ -60,13 +62,13 @@ unsigned char	*fill_bits(unsigned char *bin, int bits)
 
 	i = 0;
 	j = 0;
-	rest = bits - ft_strlen((char *)bin);
+	rest = BITS - ft_strlen((char *)bin);
 	if (rest)
 	{
-		filled = ft_calloc(bits + 1, sizeof(char));
+		filled = ft_calloc(BITS + 1, sizeof(char));
 		while (i < rest)
 			filled[i++] = '0';
-		while (i < bits)
+		while (i < BITS)
 			filled[i++] = bin[j++];
 		free(bin);
 	}
