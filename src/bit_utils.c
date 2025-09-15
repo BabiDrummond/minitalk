@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 18:13:09 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/09/13 21:54:06 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/09/14 21:13:52 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,6 @@ int	count_digits(int n)
 	return (len);
 }
 
-unsigned char	*itoba(int n)
-{
-	unsigned char	*bin;
-	char			*set;
-	int				digits;
-
-	set = ft_strdup("01");
-	digits = count_digits(n);
-	bin = ft_calloc(digits + 1, sizeof(char));
-	while (--digits >= 0)
-	{
-		bin[digits] = set[n % BASE];
-		n /= BASE;
-	}
-	return (bin);
-}
-
 int	btoi(char *b)
 {
 	int		num;
@@ -53,6 +36,21 @@ int	btoi(char *b)
 	return (num);
 }
 
+unsigned char	*itoba(int n)
+{
+	unsigned char	*bin;
+	int				digits;
+
+	digits = count_digits(n);
+	bin = ft_calloc(digits + 1, sizeof(char));
+	while (--digits >= 0)
+	{
+		bin[digits] = SET[n % BASE];
+		n /= BASE;
+	}
+	return (bin);
+}
+
 unsigned char	*fill_bits(unsigned char *bin)
 {
 	unsigned char	*filled;
@@ -63,16 +61,15 @@ unsigned char	*fill_bits(unsigned char *bin)
 	i = 0;
 	j = 0;
 	rest = BITS - ft_strlen((char *)bin);
-	if (rest)
-	{
-		filled = ft_calloc(BITS + 1, sizeof(char));
-		while (i < rest)
-			filled[i++] = '0';
-		while (i < BITS)
-			filled[i++] = bin[j++];
-		free(bin);
-	}
-	else
-		filled = bin;
+	if (rest == BITS)
+		return (bin);
+	filled = ft_calloc(BITS + 1, sizeof(char));
+	if (!filled)
+		return (free(bin), NULL);
+	while (i < rest)
+		filled[i++] = '0';
+	while (i < BITS)
+		filled[i++] = bin[j++];
+	free(bin);
 	return (filled);
 }

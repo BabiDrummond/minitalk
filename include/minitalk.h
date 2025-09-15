@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 19:42:02 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/09/13 21:36:33 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/09/14 21:07:12 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,23 @@
 # include <unistd.h>
 # include <signal.h>
 
-# ifndef BASE
 #  define BASE 2
-# endif
-
-# ifndef BITS
 #  define BITS 8
-# endif
+#  define SET "01"
 
-void			sig_handler(int sig, siginfo_t *info, void *context);
+// BIT_UTILS
 int				count_digits(int n);
 int				btoi(char *b);
 unsigned char	*itoba(int n);
-unsigned char	*fill_bits(unsigned char *bin);
+unsigned char	*fill_bits(unsigned char *binary);
+
+// CLIENT
+void        	sig_ack(int sig);
+void        	send_bits(char *pid, unsigned char *bin);
+void            send_msg(char *pid, unsigned char *msg);
+
+//SERVER
+void			sig_handler(int sig, siginfo_t *info, void *context);
+void            init_sa(void);
 
 #endif
