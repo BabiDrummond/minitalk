@@ -6,7 +6,7 @@
 /*   By: helios <helios@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 19:42:02 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/09/15 18:56:20 by helios           ###   ########.fr       */
+/*   Updated: 2025/09/15 19:07:01 by helios           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ unsigned char	*fill_bits(unsigned char *binary);
 
 // CLIENT
 void			sig_ack(int sig);
-void			send_bits(char *pid, unsigned char *bin);
-void			send_msg(char *pid, unsigned char *msg);
+void			send_bits(int pid, unsigned char *bin);
+void			send_msg(int pid, unsigned char *msg);
 
 //SERVER
 void			sig_handler(int sig, siginfo_t *info, void *context);

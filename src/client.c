@@ -6,7 +6,7 @@
 /*   By: helios <helios@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 19:45:46 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/09/15 19:00:22 by helios           ###   ########.fr       */
+/*   Updated: 2025/09/15 19:06:46 by helios           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,20 @@ void	sig_ack(int sig)
 	(void) sig;
 }
 
-void	send_bits(char *pid, unsigned char *bin)
+void	send_bits(int pid, unsigned char *bin)
 {
 	while (*bin)
 	{
 		if (*bin == '0')
-			kill(ft_atoi(pid), SIGUSR1);
+			kill(pid, SIGUSR1);
 		if (*bin == '1')
-			kill(ft_atoi(pid), SIGUSR2);
+			kill(pid, SIGUSR2);
 		bin++;
 		pause();
 	}
 }
 
-void	send_msg(char *pid, unsigned char *msg)
+void	send_msg(int pid, unsigned char *msg)
 {
 	unsigned char	*bin;
 
