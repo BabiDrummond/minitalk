@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bit_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
+/*   By: helios <helios@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 18:13:09 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/09/14 21:13:52 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/09/15 23:24:17 by helios           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ unsigned char	*itoba(int n)
 
 	digits = count_digits(n);
 	bin = ft_calloc(digits + 1, sizeof(char));
+	if (!bin)
+		return (NULL);
 	while (--digits >= 0)
 	{
 		bin[digits] = SET[n % BASE];

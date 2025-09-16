@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
+/*   By: helios <helios@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 19:45:41 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/09/14 20:35:57 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/09/15 23:29:39 by helios           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,9 @@ void	sig_handler(int sig, siginfo_t *info, void *context)
 		bin[i++] = '0';
 	if (sig == SIGUSR2)
 		bin[i++] = '1';
-	if (i == BITS)
+	if (i == BITS && ft_printf("%c", btoi(bin)))
 	{
 		i = 0;
-		ft_printf("%c", btoi(bin));
 		free(bin);
 		bin = NULL;
 	}
