@@ -6,9 +6,7 @@ LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
 SRC_DIR = src/
-SRC = bit_utils.c
 OBJ_DIR = objs/
-OBJ = $(SRC:%.c=$(OBJ_DIR)%.o)
 
 C_SRC = client.c
 C_OBJ = $(C_SRC:%.c=$(OBJ_DIR)%.o)
@@ -20,11 +18,11 @@ S_NAME = server
 
 all: $(LIBFT) $(C_NAME) $(S_NAME)
 
-$(C_NAME): $(C_OBJ) $(OBJ)
-	$(CC) $(C_OBJ) $(OBJ) $(LIBFT) $(INCLUDES) -o $(C_NAME)
+$(C_NAME): $(C_OBJ)
+	$(CC) $(C_OBJ) $(LIBFT) $(INCLUDES) -o $(C_NAME)
 
-$(S_NAME): $(S_OBJ) $(OBJ)
-	$(CC) $(S_OBJ) $(OBJ) $(LIBFT) $(INCLUDES) -o $(S_NAME)
+$(S_NAME): $(S_OBJ)
+	$(CC) $(S_OBJ) $(LIBFT) $(INCLUDES) -o $(S_NAME)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	mkdir -p $(dir $@)

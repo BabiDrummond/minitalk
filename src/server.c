@@ -6,11 +6,23 @@
 /*   By: helios <helios@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 19:45:41 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/09/15 23:29:39 by helios           ###   ########.fr       */
+/*   Updated: 2025/09/16 00:28:28 by helios           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minitalk.h"
+
+int	btoi(char *b)
+{
+	int		num;
+	size_t	i;
+
+	num = 0;
+	i = 0;
+	while (i < ft_strlen((char *) b))
+		num = num * BASE + (b[i++] - 48);
+	return (num);
+}
 
 void	sig_handler(int sig, siginfo_t *info, void *context)
 {
