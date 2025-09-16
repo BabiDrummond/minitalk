@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 19:45:46 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/09/16 18:40:50 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/09/16 19:03:06 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	sig_ack(int sig)
 {
 	if (sig == SIGUSR1)
 		g_ack.confirm = 1;
-	(void) sig;
 }
 
 void	send_bits(int pid, unsigned char c)
@@ -59,6 +58,6 @@ int	main(int argc, char *argv[])
 	signal(SIGUSR1, sig_ack);
 	send_msg(pid, (unsigned char *) argv[2]);
 	ft_printf("Acknowledge %d messages! Printed %d chars.\n",
-		g_ack.count, g_ack.count / BITS);
+		g_ack.count, (g_ack.count / BITS) - 1);
 	return (0);
 }
