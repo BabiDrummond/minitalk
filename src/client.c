@@ -6,7 +6,7 @@
 /*   By: helios <helios@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 19:45:46 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/09/16 00:16:13 by helios           ###   ########.fr       */
+/*   Updated: 2025/09/16 10:37:17 by helios           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	sig_ack(int sig)
 
 void	send_bits(int pid, unsigned char c)
 {
-	unsigned	bin;
+	unsigned char	bin;
 
 	bin = 1 << 7;
 	while (bin > 0)
