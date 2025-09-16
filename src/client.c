@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: helios <helios@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 19:45:46 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/09/16 12:05:38 by helios           ###   ########.fr       */
+/*   Updated: 2025/09/16 18:40:50 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int	main(int argc, char *argv[])
 		return (1);
 	signal(SIGUSR1, sig_ack);
 	send_msg(pid, (unsigned char *) argv[2]);
-	ft_printf("Acknowledge %d messages! Printed %d chars.\n", g_ack.count, g_ack.count / BITS);
+	ft_printf("Acknowledge %d messages! Printed %d chars.\n",
+		g_ack.count, g_ack.count / BITS);
 	return (0);
 }
