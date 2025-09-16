@@ -6,21 +6,18 @@
 /*   By: helios <helios@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 19:45:46 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/09/16 10:37:17 by helios           ###   ########.fr       */
+/*   Updated: 2025/09/16 12:05:38 by helios           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minitalk.h"
 
+t_ack	g_ack = {0, 0};
+
 void	sig_ack(int sig)
 {
-	static int	count = 0;
-	static int	chars = -1;
-
-	usleep(250);
-	if (!(count % BITS))
-		chars++;
-	ft_printf("Received message: %d! Printed chars: %d.\n", count++, chars);
+	if (sig == SIGUSR1)
+		g_ack.confirm = 1;
 	(void) sig;
 }
 
@@ -31,12 +28,15 @@ void	send_bits(int pid, unsigned char c)
 	bin = 1 << 7;
 	while (bin > 0)
 	{
+		g_ack.confirm = 0;
 		if (bin & c)
 			kill(pid, SIGUSR2);
 		else
 			kill(pid, SIGUSR1);
+		while (!g_ack.confirm)
+			;
 		bin = bin >> 1;
-		pause();
+		g_ack.count++;
 	}
 }
 
@@ -58,5 +58,6 @@ int	main(int argc, char *argv[])
 		return (1);
 	signal(SIGUSR1, sig_ack);
 	send_msg(pid, (unsigned char *) argv[2]);
+	ft_printf("Acknowledge %d messages! Printed %d chars.\n", g_ack.count, g_ack.count / BITS);
 	return (0);
 }

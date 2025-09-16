@@ -6,7 +6,7 @@
 /*   By: helios <helios@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 19:42:02 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/09/16 00:28:40 by helios           ###   ########.fr       */
+/*   Updated: 2025/09/16 12:07:01 by helios           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,14 @@
 # define BASE 2
 # define BITS 8
 # define SET "01"
+
+typedef struct s_ack
+{
+	int		confirm;
+	int		count;
+}	t_ack;
+
+extern t_ack	g_ack;
 
 // CLIENT
 void			sig_ack(int sig);

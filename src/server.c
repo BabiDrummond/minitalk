@@ -6,7 +6,7 @@
 /*   By: helios <helios@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 19:45:41 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/09/16 11:13:38 by helios           ###   ########.fr       */
+/*   Updated: 2025/09/16 12:06:14 by helios           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	sig_handler(int sig, siginfo_t *info, void *context)
 	static char	*bin = NULL;
 	static int	i = 0;
 
-	usleep(250);
 	if (bin == NULL)
 		bin = ft_calloc(BITS + 1, sizeof(char));
 	if (sig == SIGUSR1)
