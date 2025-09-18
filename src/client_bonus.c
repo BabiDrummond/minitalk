@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 19:45:46 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/09/16 18:36:08 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/09/18 19:22:44 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	sig_ack(int sig)
 {
 	if (sig == SIGUSR1)
 		g_ack.confirm = 1;
-	(void) sig;
 }
 
 void	send_bits(int pid, unsigned char c)
