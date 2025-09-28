@@ -6,13 +6,36 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 19:45:46 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/09/18 19:22:49 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/09/27 22:32:43 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minitalk.h"
 
 t_ack	g_ack = {0, 0};
+
+unsigned char	*fill_bits(unsigned char *bin)
+{
+	unsigned char	*filled;
+	int				rest;
+	int				i;
+	int				j;
+
+	i = 0;
+	j = 0;
+	rest = BITS - ft_strlen((char *)bin);
+	if (rest == BITS)
+		return (bin);
+	filled = ft_calloc(BITS + 1, sizeof(char));
+	if (!filled)
+		return (free(bin), NULL);
+	while (i < rest)
+		filled[i++] = '0';
+	while (i < BITS)
+		filled[i++] = bin[j++];
+	free(bin);
+	return (filled);
+}
 
 void	sig_ack(int sig)
 {
@@ -26,7 +49,7 @@ void	send_bits(int pid, unsigned char c)
 	int				i;
 
 	i = 0;
-	bin = fill_bits(itoba(c));
+	bin = fill_bits((unsigned char *) ft_itoa_base(c, BASE, SET));
 	while (bin[i])
 	{
 		g_ack.confirm = 0;
