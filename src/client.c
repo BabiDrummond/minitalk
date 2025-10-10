@@ -6,7 +6,7 @@
 /*   By: bmoreira <bmoreira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/08 19:45:46 by bmoreira          #+#    #+#             */
-/*   Updated: 2025/09/27 22:32:43 by bmoreira         ###   ########.fr       */
+/*   Updated: 2025/10/10 16:45:04 by bmoreira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,9 @@ int	main(int argc, char *argv[])
 {
 	int	pid;
 
-	pid = ft_atoi(argv[1]);
 	if (argc != 3 && ft_printf("Command: ./client PID MESSAGE\n"))
 		return (1);
+	pid = ft_atoi(argv[1]);
 	if (pid < 1 && ft_printf("Invalid pid.\n"))
 		return (1);
 	signal(SIGUSR1, sig_ack);
